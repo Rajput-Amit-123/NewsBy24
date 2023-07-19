@@ -21,7 +21,7 @@ export class News extends Component {
   async componentDidMount() {
     let { category } = this.state;
     let { country } = this.state;
-    let url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=55ad742ec5ab459db4ef9de4da59146c&page=${this.state.page}&pageSize=5`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${"Your_API_KEY"}&page=${this.state.page}&pageSize=5`;
     this.setState({ loading: true });
     this.setState({ page: this.state.page + 1 });
     let data = await fetch(url);
@@ -32,11 +32,10 @@ export class News extends Component {
     console.log(this.state.totalResult);
   }
 
-  // https://newsapi.org/v2/top-headlines?country=in&category=entertainment&apiKey=dcb9da25f57341188f2b8281a2de8499&page=1&pageSize=20
   fetchMoreData = async() => {
     let { category } = this.state;
     let { country } = this.state;
-    let url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=55ad742ec5ab459db4ef9de4da59146c&page=${this.state.page}&pageSize=5`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${"Your_API_KEY"}&page=${this.state.page}&pageSize=5`;
     this.setState({ page: this.state.page + 1 });
     let data = await fetch(url);
     let parsedDATA = await data.json();
@@ -64,8 +63,8 @@ export class News extends Component {
             {this.state.articles?.map((element) => (
               <div className="col-md-4 my-3 parent" key={element.url}>
               <NewsItem 
-                title={element.title ? element.title : "Not find"} 
-                discription={element.description ? element.description : "not found"} 
+                title={element.title ? element.title: "Not find"} 
+                discription={element.description ? element.description: "not found"} 
                 imgurl={element.urlToImage ? element.urlToImage : "https://i0.wp.com/learn.onemonth.com/wp-content/uploads/2017/08/1-10.png?fit=845%2C503&ssl=1"} 
                 newsUrl={element.url ? element.url : "Not Found"} 
                 />
